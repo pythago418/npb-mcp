@@ -119,10 +119,10 @@ export async function getPlayerDetail(playerId: string): Promise<PlayerDetail> {
   const html = await fetchHtml(`${BASE_URL}/bis/players/${playerId}.html`);
   const $ = cheerio.load(html);
 
-  const number = $("#pc_v_no").text().trim();
-  const name = $("#pc_v_name").text().trim().replace(/\s+/g, " ");
-  const kana = $("#pc_v_kana").text().trim();
-  const team = $("#pc_v_team").text().trim();
+  const number = $("li#pc_v_no").text().trim();
+  const name = $("li#pc_v_name").text().trim().replace(/\s+/g, " ");
+  const kana = $("li#pc_v_kana").text().trim();
+  const team = $("li#pc_v_team").text().trim();
 
   return { playerId, number, name, kana, team };
 }
